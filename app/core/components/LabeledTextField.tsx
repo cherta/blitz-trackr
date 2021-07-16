@@ -1,3 +1,4 @@
+import { Box, FormControl, FormErrorMessage, FormLabel, Input, NumberInput } from "@chakra-ui/react"
 import { forwardRef, PropsWithoutRef } from "react"
 import { useField } from "react-final-form"
 
@@ -23,35 +24,32 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
     const normalizedError = Array.isArray(error) ? error.join(", ") : error || submitError
 
     return (
-      <div {...outerProps}>
-        <label>
-          {label}
-          <input {...input} disabled={submitting} {...props} ref={ref} />
-        </label>
-
-        {touched && normalizedError && (
-          <div role="alert" style={{ color: "red" }}>
-            {normalizedError}
-          </div>
+      <FormControl isInvalid={error && touched} {...outerProps}>
+        <FormLabel fontSize="sm">{label}</FormLabel>
+        {input.type === "number" ? (
+          <NumberInput
+            {...input}
+            id={name}
+            isInvalid={error && touched}
+            disabled={submitting}
+            size="sm"
+            {...(props as any)}
+            ref={ref}
+          />
+        ) : (
+          <Input
+            {...input}
+            id={name}
+            isInvalid={error && touched}
+            disabled={submitting}
+            size="sm"
+            {...(props as any)}
+            ref={ref}
+          />
         )}
 
-        <style jsx>{`
-          label {
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-            font-size: 1rem;
-          }
-          input {
-            font-size: 1rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            border: 1px solid purple;
-            appearance: none;
-            margin-top: 0.5rem;
-          }
-        `}</style>
-      </div>
+        {touched && normalizedError && <FormErrorMessage>{normalizedError}</FormErrorMessage>}
+      </FormControl>
     )
   }
 )

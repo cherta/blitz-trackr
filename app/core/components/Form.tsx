@@ -2,6 +2,7 @@ import { ReactNode, PropsWithoutRef } from "react"
 import { Form as FinalForm, FormProps as FinalFormProps } from "react-final-form"
 import { z } from "zod"
 import { validateZodSchema } from "blitz"
+import { Alert, AlertIcon, AlertTitle, Button, VStack } from "@chakra-ui/react"
 export { FORM_ERROR } from "final-form"
 
 export interface FormProps<S extends z.ZodType<any, any>>
@@ -30,26 +31,28 @@ export function Form<S extends z.ZodType<any, any>>({
       onSubmit={onSubmit}
       render={({ handleSubmit, submitting, submitError }) => (
         <form onSubmit={handleSubmit} className="form" {...props}>
-          {/* Form fields supplied as children are rendered here */}
-          {children}
-
           {submitError && (
-            <div role="alert" style={{ color: "red" }}>
-              {submitError}
-            </div>
+            <Alert role="alert" status="error" mb="4" borderRadius="md">
+              <AlertIcon />
+              <AlertTitle>{submitError}</AlertTitle>
+            </Alert>
           )}
 
-          {submitText && (
-            <button type="submit" disabled={submitting}>
-              {submitText}
-            </button>
-          )}
-
-          <style global jsx>{`
-            .form > * + * {
-              margin-top: 1rem;
-            }
-          `}</style>
+          <VStack spacing="4">
+            {children}
+            {submitText && (
+              <Button
+                type="submit"
+                disabled={submitting}
+                variant="solid"
+                colorScheme="twitter"
+                size="sm"
+                w="full"
+              >
+                {submitText}
+              </Button>
+            )}
+          </VStack>
         </form>
       )}
     />
