@@ -23,6 +23,7 @@ model User {
 
   tokens   Token[]
   sessions Session[]
+  entries  TimeEntry[]
 }
 
 model Session {
@@ -57,4 +58,27 @@ model Token {
 
 enum TokenType {
   RESET_PASSWORD
+}
+
+model TimeEntry {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  description String?
+  start       DateTime
+  end         DateTime?
+  project     Project?  @relation(fields: [projectId], references: [id])
+  projectId   Int
+  user        User      @relation(fields: [userId], references: [id])
+  userId      Int
+}
+
+model Project {
+  id        Int         @id @default(autoincrement())
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  name      String
+  color     String      @default("gray")
+  entries   TimeEntry[]
+  deletedAt DateTime?
 }
