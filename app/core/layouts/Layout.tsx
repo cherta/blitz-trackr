@@ -1,5 +1,5 @@
 import { ReactNode, Suspense } from "react"
-import { Head, Link, useMutation } from "blitz"
+import { Head, Link, Routes, useMutation } from "blitz"
 import {
   Avatar,
   Box,
@@ -11,8 +11,9 @@ import {
   HStack,
   Img,
   useColorModeValue,
+  Link as ChakraLink,
 } from "@chakra-ui/react"
-import { AddIcon } from "@chakra-ui/icons"
+import { AddIcon, StarIcon } from "@chakra-ui/icons"
 import gravatar from "gravatar"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
@@ -30,6 +31,11 @@ const NavigationLinks = () => {
     <>
       {user ? (
         <>
+          <Button variant="solid" colorScheme="teal" size="sm" mr={4} leftIcon={<StarIcon />}>
+            <Link href={Routes.Projects()}>
+              <ChakraLink _hover={{ textDecoration: "none" }}>Projects</ChakraLink>
+            </Link>
+          </Button>
           <Button rounded="full" variant="link" cursor="pointer" onClick={() => logoutMutation()}>
             <Avatar size="sm" src={gravatar.url(user.email)} />
           </Button>
