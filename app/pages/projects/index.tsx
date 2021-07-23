@@ -1,7 +1,18 @@
 import { Suspense } from "react"
-import { BlitzPage, useMutation, useQuery } from "blitz"
+import { BlitzPage, useMutation, useQuery, Link, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { Box, Table, Thead, Tbody, Tr, Th, Td, IconButton, useToast } from "@chakra-ui/react"
+import {
+  Box,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  IconButton,
+  useToast,
+  Link as ChakraLink,
+} from "@chakra-ui/react"
 import { DeleteIcon } from "@chakra-ui/icons"
 import getProjects from "app/projects/queries/getProjects"
 import ProjectColor from "app/projects/components/ProjectColor"
@@ -39,7 +50,11 @@ const ProjectsTable = () => {
           {projects.map((project) => {
             return (
               <Tr key={project.id}>
-                <Td>{project.id}</Td>
+                <Td>
+                  <Link href={Routes.EditProject({ id: project.id })}>
+                    <ChakraLink>{project.id}</ChakraLink>
+                  </Link>
+                </Td>
                 <Td>{project.name}</Td>
                 <Td>
                   <ProjectColor color={project.color} />
