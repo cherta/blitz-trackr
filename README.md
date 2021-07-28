@@ -1,18 +1,22 @@
-[![Blitz.js](https://raw.githubusercontent.com/blitz-js/art/master/github-cover-photo.png)](https://blitzjs.com)
+# Blitz Trackr
 
-This is a [Blitz.js](https://github.com/blitz-js/blitz) app.
+A demo app built for the [Blitz.js Course](https://ingeniousagency.notion.site/Curso-de-Blitz-js-ca9022d960964a38860909eb9ef8fd67).
 
-# **blitz-trackr**
+## Installation
 
-## Getting Started
+Clone and install dependencies.
 
-Run your app in the development mode.
-
+```bash
+$> git clone git@github.com:cherta/blitz-trackr.git
+$> cd blitz-trackr
+$> yarn
 ```
-blitz dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install Blitz cli globbally.
+
+```bash
+$> npm i -g blitz
+```
 
 ## Environment Variables
 
@@ -28,15 +32,33 @@ Ensure the `.env.test.local` file has required environment variables:
 DATABASE_URL=postgresql://<YOUR_DB_USERNAME>@localhost:5432/blitz-trackr_test
 ```
 
+## Getting Started
+
+Migrate the app to the latest version.
+
+```bash
+$> blitz prisma migrate dev
+```
+
+Run your app in the development mode.
+
+```bash
+$> blitz dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
 ## Tests
 
 Runs your tests using Jest.
 
-```
-yarn test
+```bash
+$> yarn test
 ```
 
 Blitz comes with a test setup using [Jest](https://jestjs.io/) and [react-testing-library](https://testing-library.com/).
+
+---
 
 ## Commands
 
@@ -58,74 +80,6 @@ Blitz comes with a powerful CLI that is designed to make development easy and fa
 ```
 
 You can read more about it on the [CLI Overview](https://blitzjs.com/docs/cli-overview) documentation.
-
-## What's included?
-
-Here is the starting structure of your app.
-
-```
-blitz-trackr
-├── app/
-│   ├── api/
-│   ├── auth/
-│   │   ├── components/
-│   │   │   ├── LoginForm.tsx
-│   │   │   └── SignupForm.tsx
-│   │   ├── mutations/
-│   │   │   ├── changePassword.ts
-│   │   │   ├── forgotPassword.test.ts
-│   │   │   ├── forgotPassword.ts
-│   │   │   ├── login.ts
-│   │   │   ├── logout.ts
-│   │   │   ├── resetPassword.test.ts
-│   │   │   ├── resetPassword.ts
-│   │   │   └── signup.ts
-│   │   ├── pages/
-│   │   │   ├── forgot-password.tsx
-│   │   │   ├── login.tsx
-│   │   │   ├── reset-password.tsx
-│   │   │   └── signup.tsx
-│   │   └── validations.ts
-│   ├── core/
-│   │   ├── components/
-│   │   │   ├── Form.tsx
-│   │   │   └── LabeledTextField.tsx
-│   │   ├── hooks/
-│   │   │   └── useCurrentUser.ts
-│   │   └── layouts/
-│   │       └── Layout.tsx
-│   ├── pages/
-│   │   ├── 404.tsx
-│   │   ├── _app.tsx
-│   │   ├── _document.tsx
-│   │   ├── index.test.tsx
-│   │   └── index.tsx
-│   └── users/
-│       └── queries/
-│           └── getCurrentUser.ts
-├── db/
-│   ├── index.ts
-│   ├── schema.prisma
-│   └── seeds.ts
-├── integrations/
-├── mailers/
-│   └── forgotPasswordMailer.ts
-├── public/
-│   ├── favicon.ico*
-│   └── logo.png
-├── test/
-│   ├── setup.ts
-│   └── utils.tsx
-├── README.md
-├── babel.config.js
-├── blitz.config.js
-├── jest.config.js
-├── package.json
-├── tsconfig.json
-├── types.d.ts
-├── types.ts
-└── yarn.lock
-```
 
 These files are:
 
